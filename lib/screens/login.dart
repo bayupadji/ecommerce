@@ -1,3 +1,6 @@
+import 'package:ecommerce/screens/forgotpass.dart';
+import 'package:ecommerce/screens/home.dart';
+import 'package:ecommerce/screens/register.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/widgets/button.dart';
 import 'package:ecommerce/utils/widgets/inputfields.dart';
@@ -11,6 +14,7 @@ class LoginPage extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LogoTitle(),
             SizedBox(
@@ -29,9 +33,7 @@ class LogoTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 78),
-      child: Column(
+    return Column(
         children: [
           Image.asset(
             'assets/icons/Icon_App/logo_blue.png',
@@ -60,7 +62,6 @@ class LogoTitle extends StatelessWidget {
             ),
           ),
         ],
-      ),
     );
   }
 }
@@ -81,17 +82,26 @@ class FormLogin extends StatelessWidget {
             icon: Icons.email_outlined,
           ),
           const SizedBox(
-            height: 16,
+            height: 12,
           ),
-          const InputFields(
+          const PasswordFields(
             placeholder: 'Password',
             maxLines: 1,
             icon: Icons.lock_outline,
+            isPassword: true,
           ),
           const SizedBox(
             height: 16,
           ),
-          DefaultButton(btntext: 'Login', onPressed: () {}),
+          DefaultButton(
+            btntext: 'Sign In',
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const Homescreen()
+                )
+              );
+            }
+          ),
           const SizedBox(
             height: 24,
           ),
@@ -141,21 +151,30 @@ class FormLogin extends StatelessWidget {
             btntext: 'Facebook',
             icon: 'assets/icons/Facebook.png',
             onPressed: () {
-              print('object');
+              print('pressed');
             },
           ),
           const SizedBox(
             height: 16,
           ),
-          TxtButton(
-            label: 'Forgot Password',
-            onPressed: () {
-              print('object');
-            },
-            width: double.infinity,
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ForgotPassPage()));
+              },
+              child: const Text(
+                'Forgot Password',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryColor),
+              ),
+            ),
           ),
           const SizedBox(
-            height: 4,
+            height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -164,9 +183,9 @@ class FormLogin extends StatelessWidget {
               const Text(
                 'Don’t have a account?',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.greyColor,
-                  fontWeight: FontWeight.w500
+                    fontSize: 16,
+                    color: AppColors.greyColor,
+                    fontWeight: FontWeight.w400
                 ),
               ),
               const SizedBox(
@@ -174,15 +193,17 @@ class FormLogin extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  print('object');
+                  Navigator.push(
+                    context,
+                      MaterialPageRoute(builder: (context) => const RegisterPage()));
                 },
                 child: const Text(
                   'Register',
                   style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w700
-                  ),
+                      fontSize: 16,
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w700
+                    ),
                 ),
               ),
             ],

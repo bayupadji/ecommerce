@@ -33,7 +33,7 @@ class DefaultButton extends StatelessWidget {
           btntext,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 14,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
             color: AppColors.backgroundColor,
           ),
@@ -86,7 +86,7 @@ class ButtonIcon extends StatelessWidget {
               btntext,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: AppColors.greyColor,
               ),
