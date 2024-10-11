@@ -168,7 +168,7 @@ class FormLogin extends StatelessWidget {
                 'Forgot Password',
                 style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     color: AppColors.primaryColor),
               ),
             ),
@@ -202,7 +202,7 @@ class FormLogin extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16,
                       color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w700
+                      fontWeight: FontWeight.w600
                     ),
                 ),
               ),

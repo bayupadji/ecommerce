@@ -141,7 +141,7 @@ class FormRegister extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16,
                       color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
