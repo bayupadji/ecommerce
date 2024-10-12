@@ -1,9 +1,10 @@
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce/providers/promo_provider.dart';
 import 'package:ecommerce/utils/widgets/box_card/promo_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/widgets/inputfields.dart';
+import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
+import 'package:provider/provider.dart';
+
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -75,7 +76,7 @@ class Homescreen extends StatelessWidget {
       ),
       body: ListView(
         children: const [
-          PromoSection(),
+          PromoSectionContent(),
           SizedBox(height: 24,),
           CategoryMenu(),
           SizedBox(height: 24,),
@@ -90,50 +91,28 @@ class Homescreen extends StatelessWidget {
   }
 }
 
-class PromoSection extends StatefulWidget {
-  const PromoSection({super.key});
-
-  @override
-  _PromoSectionState createState() => _PromoSectionState();
-}
-
-class _PromoSectionState extends State<PromoSection> {
-  final PageController _pageController = PageController(viewportFraction: 1);
-  int _currentPage = 0;
-
-  final List<Widget> promoCards = const [
-    PromoCard(
-      label: 'Super Flash Sale\n50% Off',
-      images: AssetImage('assets/images/Promotion_Image.png'),
-    ),
-    PromoCard(
-      label: 'Weekend Special\n30% Off',
-      images: AssetImage('assets/images/Promotion_Image.png'),
-    ),
-    PromoCard(
-      label: 'New Arrivals\n20% Off',
-      images: AssetImage('assets/images/Promotion_Image.png'),
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+class PromoSectionContent extends StatelessWidget {
+  const PromoSectionContent({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final promoSectionProvider = Provider.of<PromoSectionProvider>(context);
+
+    final List<Widget> promoCards = const [
+      PromoCard(
+        label: 'Super Flash Sale\n50% Off',
+        images: AssetImage('assets/images/Promotion_Image.png'),
+      ),
+      PromoCard(
+        label: 'Weekend Special\n30% Off',
+        images: AssetImage('assets/images/Promotion_Image.png'),
+      ),
+      PromoCard(
+        label: 'New Arrivals\n20% Off',
+        images: AssetImage('assets/images/Promotion_Image.png'),
+      ),
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
@@ -142,7 +121,7 @@ class _PromoSectionState extends State<PromoSection> {
           SizedBox(
             height: 190,
             child: PageView.builder(
-              controller: _pageController,
+              controller: promoSectionProvider.pageController,
               itemCount: promoCards.length,
               itemBuilder: (context, index) {
                 return Padding(
@@ -153,16 +132,17 @@ class _PromoSectionState extends State<PromoSection> {
             ),
           ),
           const SizedBox(height: 8),
+          // Indicator
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(promoCards.length, (index) {
               return AnimatedContainer(
                 duration: const Duration(seconds: 3),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: _currentPage == index ? 12 : 8,
+                width: promoSectionProvider.currentPage == index ? 12 : 8,
                 height: 8,
                 decoration: BoxDecoration(
-                  color: _currentPage == index
+                  color: promoSectionProvider.currentPage == index
                       ? AppColors.primaryColor
                       : AppColors.primaryColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(4),

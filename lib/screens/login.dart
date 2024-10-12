@@ -3,7 +3,8 @@ import 'package:ecommerce/screens/home.dart';
 import 'package:ecommerce/screens/register.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/widgets/button.dart';
-import 'package:ecommerce/utils/widgets/inputfields.dart';
+import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
+import 'package:ecommerce/utils/widgets/text_forms/passwordfields.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +77,7 @@ class FormLogin extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const InputFields(
+          InputFields(
             placeholder: 'Your Email',
             maxLines: 1,
             icon: Icons.email_outlined,
@@ -84,11 +85,9 @@ class FormLogin extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          const PasswordFields(
+          PasswordFields(
             placeholder: 'Password',
-            maxLines: 1,
             icon: Icons.lock_outline,
-            isPassword: true,
           ),
           const SizedBox(
             height: 16,

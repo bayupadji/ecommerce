@@ -1,9 +1,22 @@
+import 'package:ecommerce/providers/promo_provider.dart';
+import 'package:ecommerce/providers/textfields_provider.dart';
+import 'package:ecommerce/providers/timer_provider.dart';
 import 'package:ecommerce/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TimerProvider()),
+        ChangeNotifierProvider(create: (_) => TextFieldProvider()),
+        ChangeNotifierProvider(create: (_) => PromoSectionProvider()),
+      ],
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -16,7 +29,7 @@ class MainApp extends StatelessWidget {
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
-      home: const Splashscreen()
+      home: Splashscreen()
     );
   }
 }

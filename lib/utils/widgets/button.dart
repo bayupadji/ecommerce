@@ -22,7 +22,7 @@ class DefaultButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 16,
           ),
@@ -32,7 +32,7 @@ class DefaultButton extends StatelessWidget {
         child: Text(
           btntext,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: AppColors.backgroundColor,
@@ -61,12 +61,12 @@ class ButtonIcon extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
-            side: const BorderSide(
+            side: BorderSide(
               color: AppColors.lightColor,
               width: 1,
             ),
           ),
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 16,
           ),
@@ -85,7 +85,7 @@ class ButtonIcon extends StatelessWidget {
             Text(
               btntext,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: AppColors.greyColor,
@@ -118,7 +118,7 @@ class TxtButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: AppColors.primaryColor,

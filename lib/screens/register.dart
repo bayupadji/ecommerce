@@ -1,7 +1,8 @@
 import 'package:ecommerce/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/widgets/inputfields.dart';
+import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
+import 'package:ecommerce/utils/widgets/text_forms/passwordfields.dart';
 import 'package:ecommerce/utils/widgets/button.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -36,20 +37,20 @@ class TitleLogo extends StatelessWidget {
             width: 73,
             height: 73,
           ),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
-          const Text(
+          Text(
             'Let’s Get Started',
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: AppColors.darkColor),
           ),
-          const SizedBox(
+          SizedBox(
             height: 8,
           ),
-          const Text(
+          Text(
             'Create an new account',
             style: TextStyle(
               fontSize: 16,
@@ -68,42 +69,38 @@ class FormRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const InputFields(
+          InputFields(
             placeholder: 'Full Name',
             maxLines: 1,
             icon: Icons.person_2_outlined
           ),
-          const SizedBox(
+          SizedBox(
             height: 12,
           ),
-          const InputFields(
+          InputFields(
             placeholder: 'Your Email',
             maxLines: 1,
             icon: Icons.mail_outline
           ),
-          const SizedBox(
+          SizedBox(
             height: 12,
           ),
-          const PasswordFields(
+          PasswordFields(
             placeholder: 'Password',
-            maxLines: 1,
             icon: Icons.lock_outline,
-            isPassword: true
           ),
-          const SizedBox(
+          SizedBox(
             height: 12,
           ),
-          const PasswordFields(
+          PasswordFields(
             placeholder: 'Confirm Password',
-            maxLines: 1,
             icon: Icons.lock_outline,
-            isPassword: true
           ),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
           DefaultButton(
@@ -116,19 +113,19 @@ class FormRegister extends StatelessWidget {
               );
             }
           ),
-          const SizedBox(height: 24,),
+          SizedBox(height: 24,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Don’t have a account?',
                 style: TextStyle(
                     fontSize: 16,
                     color: AppColors.greyColor,
                     fontWeight: FontWeight.w400),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 4,
               ),
               GestureDetector(
@@ -136,7 +133,7 @@ class FormRegister extends StatelessWidget {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
-                child: const Text(
+                child: Text(
                   'Sign In',
                   style: TextStyle(
                       fontSize: 16,
