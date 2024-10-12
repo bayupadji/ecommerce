@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:ecommerce/screens/index.dart';
 
 class ForgotPassPage extends StatelessWidget {
   const ForgotPassPage({super.key});

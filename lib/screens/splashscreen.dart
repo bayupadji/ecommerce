@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/screens/login.dart';
-
+import 'package:ecommerce/screens/index.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});

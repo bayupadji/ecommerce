@@ -1,11 +1,4 @@
-import 'package:ecommerce/screens/forgotpass.dart';
-import 'package:ecommerce/screens/home.dart';
-import 'package:ecommerce/screens/register.dart';
-import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/widgets/button.dart';
-import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
-import 'package:ecommerce/utils/widgets/text_forms/passwordfields.dart';
-import 'package:flutter/material.dart';
+import 'package:ecommerce/screens/index.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

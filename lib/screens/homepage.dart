@@ -1,10 +1,5 @@
-import 'package:ecommerce/providers/promo_provider.dart';
-import 'package:ecommerce/utils/widgets/box_card/promo_card.dart';
-import 'package:flutter/material.dart';
-import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
-import 'package:provider/provider.dart';
-
+import 'package:ecommerce/repositories/promo_items_repository.dart';
+import 'package:ecommerce/screens/index.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -27,8 +22,7 @@ class Homescreen extends StatelessWidget {
             ],
           ),
           child: AppBar(
-            backgroundColor:
-                Colors.transparent,
+            backgroundColor: Colors.transparent,
             toolbarHeight: 80,
             flexibleSpace: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -45,21 +39,20 @@ class Homescreen extends StatelessWidget {
                         icon: Icons.search_outlined,
                       ),
                     ),
-                    const SizedBox(
-                        width: 8),
+                    const SizedBox(width: 8),
                     IconButton(
                       icon: const Icon(
                         Icons.favorite_outline,
                         size: 32,
                         color: AppColors.greyColor,
-                        ),
+                      ),
                       onPressed: () {
                         // Aksi untuk icon favorite
                       },
                     ),
                     IconButton(
-                      icon:
-                        const Icon(Icons.notifications_none_outlined,
+                      icon: const Icon(
+                        Icons.notifications_none_outlined,
                         size: 32,
                         color: AppColors.greyColor,
                       ),
@@ -77,13 +70,21 @@ class Homescreen extends StatelessWidget {
       body: ListView(
         children: const [
           PromoSectionContent(),
-          SizedBox(height: 24,),
+          SizedBox(
+            height: 24,
+          ),
           CategoryMenu(),
-          SizedBox(height: 24,),
+          SizedBox(
+            height: 24,
+          ),
           FlashSaleSection(),
-          SizedBox(height: 24,),
+          SizedBox(
+            height: 24,
+          ),
           MegaSaleSection(),
-          SizedBox(height: 24,),
+          SizedBox(
+            height: 24,
+          ),
           RecommendSection()
         ],
       ),
@@ -97,21 +98,7 @@ class PromoSectionContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final promoSectionProvider = Provider.of<PromoSectionProvider>(context);
-
-    final List<Widget> promoCards = const [
-      PromoCard(
-        label: 'Super Flash Sale\n50% Off',
-        images: AssetImage('assets/images/Promotion_Image.png'),
-      ),
-      PromoCard(
-        label: 'Weekend Special\n30% Off',
-        images: AssetImage('assets/images/Promotion_Image.png'),
-      ),
-      PromoCard(
-        label: 'New Arrivals\n20% Off',
-        images: AssetImage('assets/images/Promotion_Image.png'),
-      ),
-    ];
+    final promoItems = PromoItemRepository().getPromoItems();
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -122,11 +109,16 @@ class PromoSectionContent extends StatelessWidget {
             height: 190,
             child: PageView.builder(
               controller: promoSectionProvider.pageController,
-              itemCount: promoCards.length,
+              itemCount: promoItems.length,
+              onPageChanged: (index) {
+                promoSectionProvider.setCurrentPage(index);
+              },
               itemBuilder: (context, index) {
+                final promoItem = promoItems[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: promoCards[index],
+                  child: PromoCard(
+                      item: promoItem), // Change 'promoItem' to 'item'
                 );
               },
             ),
@@ -135,9 +127,9 @@ class PromoSectionContent extends StatelessWidget {
           // Indicator
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(promoCards.length, (index) {
+            children: List.generate(promoItems.length, (index) {
               return AnimatedContainer(
-                duration: const Duration(seconds: 3),
+                duration: const Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 width: promoSectionProvider.currentPage == index ? 12 : 8,
                 height: 8,
@@ -161,7 +153,55 @@ class CategoryMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final menuItems = MenuItemRepository().getMenuItems();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Category',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                'More Category',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.blue,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 120,
+          child: ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            scrollDirection: Axis.horizontal,
+            itemCount: menuItems.length,
+            itemBuilder: (context, index) {
+              final item = menuItems[index];
+              return ItemsMenu(
+                item: item,
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(
+                width: 16,
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
 

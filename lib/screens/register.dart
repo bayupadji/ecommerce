@@ -1,9 +1,4 @@
-import 'package:ecommerce/screens/login.dart';
-import 'package:flutter/material.dart';
-import 'package:ecommerce/utils/colors.dart';
-import 'package:ecommerce/utils/widgets/text_forms/inputfields.dart';
-import 'package:ecommerce/utils/widgets/text_forms/passwordfields.dart';
-import 'package:ecommerce/utils/widgets/button.dart';
+import 'package:ecommerce/screens/index.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

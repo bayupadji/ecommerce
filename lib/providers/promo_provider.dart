@@ -13,6 +13,11 @@ class PromoSectionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setCurrentPage(int index) {
+    currentPage = index;
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     pageController.removeListener(_pageListener);

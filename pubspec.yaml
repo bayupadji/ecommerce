@@ -13,6 +13,8 @@ dependencies:
   google_fonts: ^6.2.1
   provider: ^6.1.2
 
+  flutter_svg: ^2.0.10+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -22,8 +24,14 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/Promotion_Image.png
     - assets/icons/Icon_App/logo_white.png
     - assets/icons/Icon_App/logo_blue.png
     - assets/icons/Google.png
     - assets/icons/Facebook.png
-    - assets/images/Promotion_Image.png
+    - assets/icons/Product_icon/shirt.svg
+    - assets/icons/Product_icon/dress.svg
+    - assets/icons/Product_icon/man_bag.svg
+    - assets/icons/Product_icon/man_shoes.svg
+    - assets/icons/Product_icon/woman_shoes.svg
+    - assets/icons/Product_icon/woman_bag.svg

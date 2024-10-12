@@ -39,7 +39,7 @@ class PasswordFields extends StatelessWidget {
               padding: EdgeInsets.all(8),
               child: Icon(
                 icon,
-                color: AppColors.greyColor,
+                color: AppColors.primaryColor,
               ),
             ),
             suffixIcon: IconButton(

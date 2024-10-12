@@ -1,16 +1,15 @@
+import 'package:ecommerce/models/Promo_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/providers/timer_provider.dart';
 
 class PromoCard extends StatelessWidget {
-  final String label;
-  final AssetImage images;
+  final PromoItemModel item;
 
   const PromoCard({
     super.key,
-    required this.label,
-    required this.images,
+    required this.item,
   });
 
   @override
@@ -22,7 +21,7 @@ class PromoCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             image: DecorationImage(
-              image: images,
+              image: AssetImage(item.images),
               fit: BoxFit.cover,
             ),
           ),
@@ -31,7 +30,7 @@ class PromoCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                label,
+                item.label,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
