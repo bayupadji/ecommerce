@@ -25,6 +25,10 @@ flutter:
 
   assets:
     - assets/images/Promotion_Image.png
+    - assets/images/Product1.png
+    - assets/images/Product2.png
+    - assets/images/Product3.png
+    - assets/images/image1.png
     - assets/icons/Icon_App/logo_white.png
     - assets/icons/Icon_App/logo_blue.png
     - assets/icons/Google.png
@@ -35,3 +39,9 @@ flutter:
     - assets/icons/Product_icon/man_shoes.svg
     - assets/icons/Product_icon/woman_shoes.svg
     - assets/icons/Product_icon/woman_bag.svg
+    - assets/icons/system_icon/love.png
+    - assets/icons/system_icon/Home.png
+    - assets/icons/system_icon/Cart.png
+    - assets/icons/system_icon/User.png
+    - assets/icons/system_icon/Search.png
+    - assets/icons/system_icon/Offer.png

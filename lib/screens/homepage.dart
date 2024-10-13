@@ -1,5 +1,10 @@
+import 'package:ecommerce/repositories/product_items_repository.dart';
 import 'package:ecommerce/repositories/promo_items_repository.dart';
 import 'package:ecommerce/screens/index.dart';
+import 'package:ecommerce/utils/widgets/box_card/mini_product_card.dart';
+import 'package:ecommerce/utils/widgets/box_card/default_product_card.dart';
+import 'package:ecommerce/utils/widgets/box_card/recomend_card.dart';
+import 'package:ecommerce/utils/widgets/customnavbar.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -22,7 +27,7 @@ class Homescreen extends StatelessWidget {
             ],
           ),
           child: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColors.backgroundColor,
             toolbarHeight: 80,
             flexibleSpace: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -47,7 +52,7 @@ class Homescreen extends StatelessWidget {
                         color: AppColors.greyColor,
                       ),
                       onPressed: () {
-                        // Aksi untuk icon favorite
+                        // Aksi untuk icon notifications
                       },
                     ),
                     IconButton(
@@ -88,6 +93,7 @@ class Homescreen extends StatelessWidget {
           RecommendSection()
         ],
       ),
+      bottomNavigationBar: CustomBottomNavBar(),
     );
   }
 }
@@ -167,14 +173,20 @@ class CategoryMenu extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
+                  color: AppColors.darkColor,
                 ),
               ),
-              Text(
-                'More Category',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.blue,
+              GestureDetector(
+                onTap: () {
+                  // on Tap Actions
+                },
+                child: Text(
+                  'More Category',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
             ],
@@ -210,7 +222,61 @@ class FlashSaleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final productItems = ProductItemsRepository().getProductItems();
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Flash Sale',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.darkColor,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  // on Tap Action
+                },
+                child: Text(
+                  'See More',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        SizedBox(
+            height: 250,
+            child: ListView.separated(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final items = productItems[index];
+                  return MiniProductCard(
+                    item: items,
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    width: 16,
+                  );
+                },
+                itemCount: productItems.length)),
+      ],
+    );
   }
 }
 
@@ -219,7 +285,62 @@ class MegaSaleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final productItems = ProductItemsRepository().getProductItems();
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Mega Sale',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.darkColor,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  // actions
+                },
+                child: Text(
+                  'See More',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        SizedBox(
+          height: 250,
+          child: ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final items = productItems[index];
+                return MiniProductCard(
+                  item: items,
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  width: 16,
+                );
+              },
+              itemCount: productItems.length
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -228,6 +349,26 @@ class RecommendSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final items = ProductItemsRepository().getProductItems();
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          const RecomendCard(),
+          const SizedBox(height: 2),
+          Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            children: List.generate(items.length, (index) {
+              return SizedBox(
+                width: (MediaQuery.of(context).size.width - 48) / 2,
+                child: DefaultProductCard(item: items[index]),
+              );
+            }),
+          ),
+        ],
+      ),
+    );
   }
 }

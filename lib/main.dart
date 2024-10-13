@@ -1,4 +1,5 @@
 import 'package:ecommerce/providers/promo_provider.dart';
+import 'package:ecommerce/providers/navbar_provider.dart';
 import 'package:ecommerce/providers/textfields_provider.dart';
 import 'package:ecommerce/providers/timer_provider.dart';
 import 'package:ecommerce/screens/splashscreen.dart';
@@ -13,6 +14,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => TimerProvider()),
         ChangeNotifierProvider(create: (_) => TextFieldProvider()),
         ChangeNotifierProvider(create: (_) => PromoSectionProvider()),
+        ChangeNotifierProvider(create: (_) => NavbarProvider()),
       ],
       child: MainApp(),
     ),
