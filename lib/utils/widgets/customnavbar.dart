@@ -1,7 +1,9 @@
+import 'package:ecommerce/repositories/navbar_item_repository.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/providers/navbar_provider.dart';
+import 'package:ecommerce/repositories/navbar_item_repository.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
@@ -10,7 +12,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<NavbarProvider>(context);
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
         boxShadow: [
@@ -23,38 +25,16 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(
-            iconPath: 'assets/icons/system_icon/Home.png',
-            label: 'Home',
-            index: 0,
+        children: NavbarRepository.navItems.asMap().entries.map((entry) {
+          int index = entry.key;
+          var item = entry.value;
+          return _buildNavItem(
+            iconPath: item.iconPath,
+            label: item.label,
+            index: index,
             provider: provider,
-          ),
-          _buildNavItem(
-            iconPath: 'assets/icons/system_icon/Search.png',
-            label: 'Explore',
-            index: 1,
-            provider: provider,
-          ),
-          _buildNavItem(
-            iconPath: 'assets/icons/system_icon/Cart.png',
-            label: 'Cart',
-            index: 2,
-            provider: provider,
-          ),
-          _buildNavItem(
-            iconPath: 'assets/icons/system_icon/Offer.png',
-            label: 'Offer',
-            index: 3,
-            provider: provider,
-          ),
-          _buildNavItem(
-            iconPath: 'assets/icons/system_icon/User.png',
-            label: 'Account',
-            index: 4,
-            provider: provider,
-          ),
-        ],
+          );
+        }).toList(),
       ),
     );
   }
