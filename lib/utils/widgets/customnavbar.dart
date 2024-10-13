@@ -3,7 +3,6 @@ import 'package:ecommerce/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce/providers/navbar_provider.dart';
-import 'package:ecommerce/repositories/navbar_item_repository.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
